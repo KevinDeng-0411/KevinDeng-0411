@@ -65,6 +65,9 @@
 <img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/languages-card.svg" width="820" alt="Top Languages" />
 
 <sub>Powered by <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a> (cached daily via Actions) · <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a></sub>
+![](https://github-readme-stats.shion.dev/api?username=KevinDeng-0411&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
+![](https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=dark&hide_border=false)<br/>
+![](https://github-readme-stats.shion.dev/api/top-langs/?username=KevinDeng-0411&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
 </div>
 
@@ -97,3 +100,4 @@
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KevinDeng-0411)
 
 </div>
+
