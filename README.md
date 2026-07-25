@@ -9,11 +9,11 @@
 
 ## 👋 About Me
 
-- 🎓 Currently **interning** as a **Go Backend Engineer**
-- 💻 Main stack: **Java** · Spring / Spring Boot
-- 🌱 Strengthening **Go** (production) and **Python** (for AI workloads)
-- 🚀 Next chapter: **AI Application Development** (LLM apps, RAG, agents)
-- 🧩 Interested in distributed systems, microservices, and clean architecture
+> 🎓 Go 后端实习中,日常 Java 写业务、Go 写中间件。
+> 空闲时间学习 AI 应用开发相关内容,刷算法、学习英语等。
+>
+> 💬 **能聊的:** Java/Go 后端 · LLM 应用 · 求职面试 · 校招 / 实习经验
+> 📮 **找我的话:** [邮件](mailto:dengkaifan1115@gmail.com) 最快
 
 ---
 
