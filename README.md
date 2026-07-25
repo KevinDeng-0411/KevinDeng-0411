@@ -26,11 +26,11 @@
 
 ---
 
-## 🎧 NetEase Cloud Music
+## 🎧 NetEase Cloud Music · Weekly Top
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/musicCard.svg" alt="NetEase Music Card" />
+<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/musicCard.svg" alt="NetEase Weekly Top Songs" />
 
 <sub>Updated daily via GitHub Actions · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/netease-music-card.yml">workflow</a></sub>
 
