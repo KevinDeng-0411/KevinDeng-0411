@@ -71,8 +71,10 @@
 
 ---
 
+<h2 align="center">🎧 Recently Played</h2>
+
 <details>
-<summary><b>🎧 Recently Played · NetEase Cloud Music</b></summary>
+<summary><b>点击展开 · View music card</b></summary>
 
 <div align="center">
 
