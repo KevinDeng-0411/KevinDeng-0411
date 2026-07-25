@@ -69,13 +69,13 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
     songs = []
     for item in week.get("weekData", []):
         s = item.get("song") or {}
-        album = s.get("album") or {}
+        album = s.get("album") or s.get("al") or {}
         pic = album.get("picUrl", "")
         if pic and "?" in pic:
             pic = pic.split("?")[0] + "?param=300y300"
         elif pic:
             pic = pic + "?param=300y300"
-        artists = s.get("artists") or []
+        artists = s.get("artists") or s.get("ar") or []
         songs.append(
             {
                 "name": s.get("name", ""),
