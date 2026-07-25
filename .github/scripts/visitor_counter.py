@@ -232,26 +232,25 @@ def main() -> int:
     today_count = 0
 
     if not token:
-        write_svg(build_svg(history["total"], 0, history["since"],
-                            load_last_character(), "Set VISITOR_TOKEN"))
-        print("VISITOR_TOKEN not set; wrote placeholder card.")
-        return 0
+        error = "Set VISITOR_TOKEN"
+        print("VISITOR_TOKEN not set; using cached history.")
+    else:
+        try:
+            traffic = fetch_traffic(token, OWNER, REPO)
+            history = accumulate(history, traffic)
+            today_count = sum(
+                int(e.get("uniques", 0))
+                for e in traffic.get("views", [])
+                if e.get("timestamp", "")[:10] == today_iso
+            )
+        except urllib.error.HTTPError as exc:
+            error = f"HTTP {exc.code}"
+            print(f"Traffic API HTTP {exc.code}: {exc.read().decode()[:200]}", file=sys.stderr)
+        except Exception as exc:
+            error = f"API error: {exc}"
+            print(f"Traffic API error: {exc}", file=sys.stderr)
 
-    try:
-        traffic = fetch_traffic(token, OWNER, REPO)
-        history = accumulate(history, traffic)
-        save_history(history)
-        today_count = sum(
-            int(e.get("uniques", 0))
-            for e in traffic.get("views", [])
-            if e.get("timestamp", "")[:10] == today_iso
-        )
-    except urllib.error.HTTPError as exc:
-        error = f"HTTP {exc.code}"
-        print(f"Traffic API HTTP {exc.code}: {exc.read().decode()[:200]}", file=sys.stderr)
-    except Exception as exc:
-        error = f"API error: {exc}"
-        print(f"Traffic API error: {exc}", file=sys.stderr)
+    save_history(history)
 
     char = fetch_character()
     if char:
