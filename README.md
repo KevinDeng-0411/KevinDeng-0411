@@ -33,7 +33,7 @@
 
 <img src="https://github-readme-stats.vercel.app/api?username=KevinDeng-0411&theme=tokyonight&show_icons=true&hide_border=true&count_private=true" width="410" alt="GitHub Stats" />
 &nbsp;
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=KevinDeng-0411&theme=tokyonight&hide_border=true" width="410" alt="GitHub Streak" />
+<img src="https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=tokyonight&hide_border=true" width="410" alt="GitHub Streak" />
 
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=KevinDeng-0411&theme=tokyonight&layout=compact&hide_border=true&langs_count=8" width="820" alt="Top Languages" />
 
