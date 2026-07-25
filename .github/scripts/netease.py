@@ -15,6 +15,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.parse
 import urllib.request
 
@@ -63,6 +64,10 @@ class CookieExpiredError(RuntimeError):
     """Raised when NetEase API rejects the cookie."""
 
 
+class TransientApiError(RuntimeError):
+    """Raised when NetEase API returns 200 but malformed body (temp flake)."""
+
+
 def fetch(cookie: str) -> tuple[str, list[dict]]:
     headers = {
         "Cookie": f"MUSIC_U={cookie}",
@@ -80,9 +85,10 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
         ).read()
     )
     code = account.get("code")
-    if code != 200 or not account.get("account"):
-        # codes 301 / -460 typically mean "need login" / cookie rejected
+    if code in (301, -460, 404):
         raise CookieExpiredError(f"account API code={code}: {account.get('message', '')}")
+    if code != 200 or not account.get("account"):
+        raise TransientApiError(f"account API code={code}: {account.get('message', '')}")
     uid = account["account"]["id"]
     nickname = account["profile"]["nickname"]
 
@@ -259,6 +265,21 @@ def update_readme_banner(error_msg: str | None) -> None:
         print(f"README.md banner {'set' if error_msg else 'cleared'}.")
 
 
+def fetch_with_retry(cookie: str, attempts: int = 3, delay: int = 5) -> tuple[str, list[dict]]:
+    last_exc = None
+    for i in range(attempts):
+        try:
+            return fetch(cookie)
+        except CookieExpiredError:
+            raise
+        except TransientApiError as exc:
+            last_exc = exc
+            if i < attempts - 1:
+                print(f"Transient API error: {exc}; retry {i+1}/{attempts} in {delay}s", file=sys.stderr)
+                time.sleep(delay)
+    raise last_exc
+
+
 def main() -> int:
     cookie = os.environ.get("MUSIC_U", "").strip()
     if not cookie:
@@ -268,15 +289,18 @@ def main() -> int:
         return 0
 
     try:
-        nickname, songs = fetch(cookie)
+        nickname, songs = fetch_with_retry(cookie)
     except CookieExpiredError as exc:
         print(f"Cookie expired: {exc}", file=sys.stderr)
         write_svg(build_svg("Kevin", [], "Cookie expired"))
         update_readme_banner(str(exc))
         return 0
+    except TransientApiError as exc:
+        print(f"Transient API error after retries: {exc}", file=sys.stderr)
+        update_readme_banner(f"transient API error (will retry next run): {exc}")
+        return 0
     except Exception as exc:
         print(f"Fetch failed: {exc}", file=sys.stderr)
-        write_svg(build_svg("Kevin", [], "API error — try again later"))
         update_readme_banner(f"transient API error: {exc}")
         return 0
 
