@@ -71,7 +71,7 @@
 
 <div align="center">
 
-<img src="visitorCard.svg" width="460" alt="Visitor Count" />
+<img src="https://count.getloli.com/get/@KevinDeng-0411?theme=miku" alt="Visitor Count" />
 
 <sub>⭐️ Inspired by the GitHub community. Feel free to fork & customize.</sub>
 
