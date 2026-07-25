@@ -18,8 +18,22 @@ jobs:
       - name: Fetch SVGs from Vercel
         run: |
           set -e
-          curl -fsSL --max-time 30 "https://github-readme-stats.vercel.app/api?username=KevinDeng-0411&theme=tokyonight&show_icons=true&hide_border=true&count_private=true" -o stats-card.svg
-          curl -fsSL --max-time 30 "https://github-readme-stats.vercel.app/api/top-langs/?username=KevinDeng-0411&theme=tokyonight&layout=compact&hide_border=true&langs_count=8" -o languages-card.svg
+          # Vercel public instance often returns 503/429 under shared PAT rate limit.
+          # Retry with backoff to ride through transient failures.
+          fetch() {
+            local url="$1" out="$2"
+            for i in 1 2 3 4 5; do
+              if curl -fsSL --max-time 30 "$url" -o "$out"; then
+                return 0
+              fi
+              echo "Attempt $i failed for $out, sleeping $((i*5))s..." >&2
+              sleep $((i*5))
+            done
+            echo "All 5 attempts failed for $out" >&2
+            return 1
+          }
+          fetch "https://github-readme-stats.vercel.app/api?username=KevinDeng-0411&theme=tokyonight&show_icons=true&hide_border=true&count_private=true" stats-card.svg
+          fetch "https://github-readme-stats.vercel.app/api/top-langs/?username=KevinDeng-0411&theme=tokyonight&layout=compact&hide_border=true&langs_count=8" languages-card.svg
           grep -q '<svg' stats-card.svg || { echo "stats-card.svg is not SVG"; cat stats-card.svg; exit 1; }
           grep -q '<svg' languages-card.svg || { echo "languages-card.svg is not SVG"; cat languages-card.svg; exit 1; }
 
