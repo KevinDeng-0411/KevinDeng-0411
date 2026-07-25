@@ -27,7 +27,8 @@
 
 ---
 
-## 🎧 Recently Played · NetEase Cloud Music
+<details>
+<summary><b>🎧 Recently Played · NetEase Cloud Music</b></summary>
 
 <div align="center">
 
@@ -36,6 +37,8 @@
 <sub>Weekly ranking from NetEase Cloud Music · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/netease-music-card.yml">auto-updated daily</a></sub>
 
 </div>
+
+</details>
 
 ---
 
