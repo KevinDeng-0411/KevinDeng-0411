@@ -9,7 +9,7 @@
 
 ## 👋 About Me
 
-> 🎓 Currently a Go backend intern — Java for business services, Go for middleware.
+> 🎓 Go backend intern — but Java is my stronger stack.
 > In my free time learning AI application development, grinding LeetCode, and studying English.
 >
 > 💬 **Open to chat about:** Java/Go backend · LLM applications · Job hunting & interviews · Campus recruiting / internship experience
