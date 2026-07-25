@@ -58,16 +58,13 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/stats-card.svg" width="410" alt="GitHub Stats" />
+<img src="https://github-readme-stats.shion.dev/api?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true" width="410" alt="GitHub Stats" />
 &nbsp;
-<img src="https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=tokyonight&hide_border=true" width="410" alt="GitHub Streak" />
+<img src="https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=radical&hide_border=false" width="410" alt="GitHub Streak" />
 
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/languages-card.svg" width="820" alt="Top Languages" />
+<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true&layout=compact" width="820" alt="Top Languages" />
 
-<sub>Powered by <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a> (cached daily via Actions) · <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a></sub>
-![](https://github-readme-stats.shion.dev/api?username=KevinDeng-0411&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.shion.dev/api/top-langs/?username=KevinDeng-0411&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+<sub>Powered by <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a> (shion.dev mirror) · <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a></sub>
 
 </div>
 
