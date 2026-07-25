@@ -76,34 +76,58 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
         "Referer": "https://music.163.com/",
     }
 
-    account = json.loads(
-        urllib.request.urlopen(
-            urllib.request.Request(
-                "https://music.163.com/api/nuser/account/get", headers=headers
-            ),
-            timeout=15,
-        ).read()
+    acc_resp = urllib.request.urlopen(
+        urllib.request.Request(
+            "https://music.163.com/api/nuser/account/get", headers=headers
+        ),
+        timeout=15,
     )
+    acc_body = acc_resp.read().decode("utf-8", errors="replace")
+    acc_headers = dict(acc_resp.headers.items())
+    try:
+        account = json.loads(acc_body)
+    except json.JSONDecodeError:
+        print(f"[debug] account API non-JSON body (first 500): {acc_body[:500]}", file=sys.stderr)
+        print(f"[debug] account API headers: {acc_headers}", file=sys.stderr)
+        raise TransientApiError("account API returned non-JSON body")
     code = account.get("code")
     if code in (301, -460, 404):
+        print(f"[debug] account API cookie-expired body: {acc_body[:500]}", file=sys.stderr)
+        print(f"[debug] account API headers: {acc_headers}", file=sys.stderr)
         raise CookieExpiredError(f"account API code={code}: {account.get('message', '')}")
     if code != 200 or not account.get("account"):
+        print(f"[debug] account API anomaly body: {acc_body[:500]}", file=sys.stderr)
+        print(f"[debug] account API headers: {acc_headers}", file=sys.stderr)
+        set_cookies = acc_resp.headers.get_all("Set-Cookie") or []
+        for sc in set_cookies:
+            if "MUSIC_U=" in sc:
+                new_mu = sc.split("MUSIC_U=")[1].split(";")[0]
+                print(f"[debug] Set-Cookie returned new MUSIC_U (len={len(new_mu)})", file=sys.stderr)
+                break
         raise TransientApiError(f"account API code={code}: {account.get('message', '')}")
     uid = account["account"]["id"]
     nickname = account["profile"]["nickname"]
 
     data = urllib.parse.urlencode({"uid": uid, "type": "1"}).encode()
-    week = json.loads(
-        urllib.request.urlopen(
-            urllib.request.Request(
-                "https://music.163.com/api/v1/play/record",
-                data=data,
-                headers=headers,
-            ),
-            timeout=15,
-        ).read()
+    week_resp = urllib.request.urlopen(
+        urllib.request.Request(
+            "https://music.163.com/api/v1/play/record",
+            data=data,
+            headers=headers,
+        ),
+        timeout=15,
     )
+    week_body = week_resp.read().decode("utf-8", errors="replace")
+    week_headers = dict(week_resp.headers.items())
+    try:
+        week = json.loads(week_body)
+    except json.JSONDecodeError:
+        print(f"[debug] play-record API non-JSON body (first 500): {week_body[:500]}", file=sys.stderr)
+        print(f"[debug] play-record API headers: {week_headers}", file=sys.stderr)
+        raise TransientApiError("play-record API returned non-JSON body")
     if week.get("code") != 200:
+        print(f"[debug] play-record API anomaly body: {week_body[:500]}", file=sys.stderr)
+        print(f"[debug] play-record API headers: {week_headers}", file=sys.stderr)
         raise CookieExpiredError(f"play-record API code={week.get('code')}: {week.get('message', '')}")
 
     songs = []
