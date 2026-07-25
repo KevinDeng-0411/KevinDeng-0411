@@ -1,51 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="460" height="574" viewBox="0 0 460 574" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="460" height="142" viewBox="0 0 460 142" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
 <rect width="100%" height="100%" fill="#1a1b27" rx="12"/>
 <g transform="translate(18,18)">
 <rect x="0" y="0" width="96" height="28" rx="6" fill="#1f2330"/>
 <text x="14" y="19" fill="#1db954" font-size="14" font-weight="700">♪</text>
 <text x="30" y="19" fill="#c0caf5" font-size="11" font-weight="700">NETEASE</text>
 <rect x="102" y="0" width="104" height="28" rx="6" fill="#1db954"/>
-<text x="154" y="19" text-anchor="middle" fill="#000" font-size="11" font-weight="800" letter-spacing="0.5">AWSL-_-</text>
+<text x="154" y="19" text-anchor="middle" fill="#000" font-size="11" font-weight="800" letter-spacing="0.5">KEVIN</text>
 </g>
-<text x="230.0" y="74" text-anchor="middle" fill="#c0caf5" font-size="13" font-weight="600">Recently Played · Past 7 Days</text>
-<image href="" x="18" y="92" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="110" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 1. </tspan>Nevada</text>
-<text x="70" y="126" fill="#565f89" font-size="11"></text>
-<text x="442" y="116" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">100×</text>
-<image href="" x="18" y="140" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="158" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 2. </tspan>Bodies</text>
-<text x="70" y="174" fill="#565f89" font-size="11"></text>
-<text x="442" y="164" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">75×</text>
-<image href="" x="18" y="188" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="206" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 3. </tspan>Nobody's Business</text>
-<text x="70" y="222" fill="#565f89" font-size="11"></text>
-<text x="442" y="212" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">75×</text>
-<image href="" x="18" y="236" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="254" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 4. </tspan>on one tonight</text>
-<text x="70" y="270" fill="#565f89" font-size="11"></text>
-<text x="442" y="260" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">75×</text>
-<image href="" x="18" y="284" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="302" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 5. </tspan>Never Imagined</text>
-<text x="70" y="318" fill="#565f89" font-size="11"></text>
-<text x="442" y="308" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">75×</text>
-<image href="" x="18" y="332" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="350" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 6. </tspan>Nice For What</text>
-<text x="70" y="366" fill="#565f89" font-size="11"></text>
-<text x="442" y="356" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">50×</text>
-<image href="" x="18" y="380" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="398" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 7. </tspan>OK (feat. Don Toliver)</text>
-<text x="70" y="414" fill="#565f89" font-size="11"></text>
-<text x="442" y="404" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">50×</text>
-<image href="" x="18" y="428" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="446" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 8. </tspan>Make Them Pay</text>
-<text x="70" y="462" fill="#565f89" font-size="11"></text>
-<text x="442" y="452" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">50×</text>
-<image href="" x="18" y="476" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="494" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500"> 9. </tspan>Back To Back</text>
-<text x="70" y="510" fill="#565f89" font-size="11"></text>
-<text x="442" y="500" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">50×</text>
-<image href="" x="18" y="524" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="542" fill="#ffffff" font-size="13" font-weight="600"><tspan fill="#565f89" font-weight="500">10. </tspan>CANT STOP</text>
-<text x="70" y="558" fill="#565f89" font-size="11"></text>
-<text x="442" y="548" text-anchor="end" fill="#1db954" font-size="12" font-weight="700">50×</text>
+<text x="230.0" y="74" text-anchor="middle" fill="#c0caf5" font-size="13" font-weight="600">API error — try again later</text>
+<text x="230.0" y="114" text-anchor="middle" fill="#565f89" font-size="12">Once you start playing on NetEase, your weekly ranking shows up here.</text>
 </svg>
