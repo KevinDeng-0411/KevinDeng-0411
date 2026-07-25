@@ -35,7 +35,7 @@
 <summary>🌐 查看中文版</summary>
 
 > 🎓 Java/Go 后端，正在深耕 AI Agent 开发。
-> 业余时间刷 LeetCode、练英语。
+> 业余时间刷 LeetCode、准备面试八股。
 >
 > 💬 **欢迎聊聊：** Java/Go 后端 · LLM 应用 · AI Agent · 求职与面试 · 校招 / 实习经验
 > 📮 **联系我：** [邮箱](mailto:dengkaifan1115@gmail.com) 最快
