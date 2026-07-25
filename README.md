@@ -39,6 +39,22 @@
 
 ---
 
+## 📊 GitHub Stats
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/stats-card.svg" width="410" alt="GitHub Stats" />
+&nbsp;
+<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/streak-card.svg" width="410" alt="GitHub Streak" />
+
+<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/languages-card.svg" width="820" alt="Top Languages" />
+
+<sub>Updated daily via GitHub Actions · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/github-stats.yml">workflow</a></sub>
+
+</div>
+
+---
+
 ## 🤝 Connect with Me
 
 <div align="center">
