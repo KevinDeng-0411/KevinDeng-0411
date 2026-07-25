@@ -72,6 +72,8 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
         s = item.get("song") or {}
         album = s.get("album") or s.get("al") or {}
         pic = album.get("picUrl", "")
+        if pic.startswith("http://"):
+            pic = "https://" + pic[len("http://"):]
         if pic and "?" in pic:
             pic = pic.split("?")[0] + "?param=300y300"
         elif pic:
