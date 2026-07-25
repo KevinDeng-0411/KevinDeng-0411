@@ -20,7 +20,8 @@ THEME_CARD = "#24283b"
 THEME_FG = "#c0caf5"
 THEME_TITLE = "#ffffff"
 THEME_MUTED = "#565f89"
-THEME_GREEN = "#1db954"
+THEME_RED = "#c20c0c"
+THEME_RED_LIGHT = "#e72d2c"
 
 WIDTH = 460
 COVER_SM = 40
@@ -110,10 +111,10 @@ def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
         f'<rect width="100%" height="100%" fill="{THEME_BG}" rx="12"/>',
         f'<g transform="translate({PAD},{PAD})">',
         f'<rect x="0" y="0" width="96" height="28" rx="6" fill="#1f2330"/>',
-        f'<text x="14" y="19" fill="{THEME_GREEN}" font-size="14" font-weight="700">♪</text>',
+        f'<text x="14" y="19" fill="{THEME_RED_LIGHT}" font-size="14" font-weight="700">♪</text>',
         f'<text x="30" y="19" fill="{THEME_FG}" font-size="11" font-weight="700">NETEASE</text>',
-        f'<rect x="102" y="0" width="104" height="28" rx="6" fill="{THEME_GREEN}"/>',
-        f'<text x="154" y="19" text-anchor="middle" fill="#000" font-size="11" '
+        f'<rect x="102" y="0" width="104" height="28" rx="6" fill="{THEME_RED}"/>',
+        f'<text x="154" y="19" text-anchor="middle" fill="#fff" font-size="11" '
         f'font-weight="800" letter-spacing="0.5">{nick}</text>',
         f'</g>',
     ]
@@ -154,7 +155,7 @@ def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
             plays = song.get("score", 0)
             parts.append(
                 f'<text x="{WIDTH - PAD}" y="{row_y + 24}" text-anchor="end" '
-                f'fill="{THEME_GREEN}" font-size="12" font-weight="700">{plays}×</text>'
+                f'fill="{THEME_RED_LIGHT}" font-size="12" font-weight="700">{plays}×</text>'
             )
 
     parts.append("</svg>")
