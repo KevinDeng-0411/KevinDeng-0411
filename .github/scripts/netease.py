@@ -9,6 +9,7 @@ Real-time "currently playing" isn't available via NetEase's public API,
 so we don't try to show it.
 """
 
+import base64
 import json
 import os
 import sys
@@ -22,6 +23,30 @@ THEME_TITLE = "#ffffff"
 THEME_MUTED = "#565f89"
 THEME_RED = "#c20c0c"
 THEME_RED_LIGHT = "#e72d2c"
+THEME_RED_FAINT = "#7a1e1e"
+
+
+def fetch_cover_data_uri(url: str) -> str:
+    """Download album cover and return as base64 data URI.
+
+    GitHub renders SVGs via <img src>, which blocks nested <image href>
+    external references — they only render when inlined as data URIs.
+    """
+    if not url:
+        return ""
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0",
+                "Referer": "https://music.163.com/",
+            },
+        )
+        data = urllib.request.urlopen(req, timeout=10).read()
+        return "data:image/jpeg;base64," + base64.b64encode(data).decode("ascii")
+    except Exception as exc:
+        print(f"cover fetch failed: {exc}", file=sys.stderr)
+        return url  # fall back to URL; will likely render broken but doesn't crash
 
 WIDTH = 460
 COVER_SM = 40
@@ -84,7 +109,7 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
                 "name": s.get("name", ""),
                 "artists": "/".join(a.get("name", "") for a in artists)
                 or (s.get("artist") or {}).get("name", ""),
-                "cover": pic,
+                "cover": fetch_cover_data_uri(pic),
                 "score": item.get("score", 0),
             }
         )
@@ -139,10 +164,22 @@ def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
         list_y = lh_y + 18
         for i, song in enumerate(songs):
             row_y = list_y + i * (COVER_SM + ROW_GAP)
-            parts.append(
-                f'<image href="{escape(song["cover"])}" x="{PAD}" y="{row_y}" '
-                f'width="{COVER_SM}" height="{COVER_SM}" preserveAspectRatio="xMidYMid slice"/>'
-            )
+            cover = song.get("cover") or ""
+            if cover:
+                parts.append(
+                    f'<image href="{cover}" x="{PAD}" y="{row_y}" '
+                    f'width="{COVER_SM}" height="{COVER_SM}" preserveAspectRatio="xMidYMid slice"/>'
+                )
+            else:
+                parts.append(
+                    f'<rect x="{PAD}" y="{row_y}" width="{COVER_SM}" height="{COVER_SM}" '
+                    f'rx="4" fill="{THEME_RED_FAINT}"/>'
+                )
+                parts.append(
+                    f'<text x="{PAD + COVER_SM / 2}" y="{row_y + COVER_SM / 2 + 4}" '
+                    f'text-anchor="middle" fill="#fff" font-size="11" font-weight="700">'
+                    f'{i + 1}</text>'
+                )
             text_x = PAD + COVER_SM + 12
             parts.append(
                 f'<text x="{text_x}" y="{row_y + 18}" fill="{THEME_TITLE}" '
@@ -155,9 +192,10 @@ def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
                 f'font-size="11">{escape(truncate(song["artists"], 26))}</text>'
             )
             plays = song.get("score", 0)
+            plays_text = f"▶ {plays} plays" if plays >= 10 else (f"▶ {plays}" if plays else "▶ played")
             parts.append(
                 f'<text x="{WIDTH - PAD}" y="{row_y + 24}" text-anchor="end" '
-                f'fill="{THEME_RED_LIGHT}" font-size="12" font-weight="700">{plays}×</text>'
+                f'fill="{THEME_RED_LIGHT}" font-size="11" font-weight="700">{plays_text}</text>'
             )
 
     parts.append("</svg>")
