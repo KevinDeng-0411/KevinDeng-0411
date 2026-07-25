@@ -1,3 +1,4 @@
+
 <div align="center">
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&pause=1000&color=2E80F6&center=true&vCenter=true&width=680&lines=Backend+Engineer;Java+%7C+Go+%7C+Python;Building+AI+Applications" alt="Typing SVG" />

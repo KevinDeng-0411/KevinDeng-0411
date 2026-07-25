@@ -10,8 +10,10 @@ so we don't try to show it.
 """
 
 import base64
+import datetime as _dt
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -57,6 +59,10 @@ LIST_HEADER_H = 24
 FOOTER_H = 14
 
 
+class CookieExpiredError(RuntimeError):
+    """Raised when NetEase API rejects the cookie."""
+
+
 def fetch(cookie: str) -> tuple[str, list[dict]]:
     headers = {
         "Cookie": f"MUSIC_U={cookie}",
@@ -73,8 +79,10 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
             timeout=15,
         ).read()
     )
-    if account.get("code") != 200 or not account.get("account"):
-        raise RuntimeError(f"account API rejected cookie: {account}")
+    code = account.get("code")
+    if code != 200 or not account.get("account"):
+        # codes 301 / -460 typically mean "need login" / cookie rejected
+        raise CookieExpiredError(f"account API code={code}: {account.get('message', '')}")
     uid = account["account"]["id"]
     nickname = account["profile"]["nickname"]
 
@@ -90,7 +98,7 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
         ).read()
     )
     if week.get("code") != 200:
-        raise RuntimeError(f"play-record API: {week}")
+        raise CookieExpiredError(f"play-record API code={week.get('code')}: {week.get('message', '')}")
 
     songs = []
     for item in week.get("weekData", []):
@@ -208,26 +216,86 @@ def write_svg(content: str) -> None:
         f.write(content)
 
 
+README_PATH = "README.md"
+BANNER_START = "<!-- NETEASE_BANNER_START -->"
+BANNER_END = "<!-- NETEASE_BANNER_END -->"
+SECRETS_URL = (
+    "https://github.com/KevinDeng-0411/KevinDeng-0411/settings/secrets/actions"
+)
+
+
+def update_readme_banner(error_msg: str | None) -> None:
+    """Insert or remove the cookie-expired banner at the top of README.
+
+    error_msg: str → insert banner with this message
+    error_msg: None → strip any existing banner
+    """
+    try:
+        with open(README_PATH, "r", encoding="utf-8") as f:
+            content = f.read()
+    except FileNotFoundError:
+        return
+
+    if error_msg is None:
+        # Remove any existing banner block
+        pattern = re.compile(
+            re.escape(BANNER_START) + r".*?" + re.escape(BANNER_END) + r"\n?",
+            re.DOTALL,
+        )
+        new_content = pattern.sub("", content)
+    else:
+        ts = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        banner = (
+            f"{BANNER_START}\n"
+            f"> ⚠️ **NetEase Music Card unavailable** — Cookie expired. "
+            f"[Update `MUSIC_U` secret]({SECRETS_URL}) · "
+            f"_last attempt: {ts}, error: `{error_msg[:80]}`_\n"
+            f"{BANNER_END}\n\n"
+        )
+        pattern = re.compile(
+            re.escape(BANNER_START) + r".*?" + re.escape(BANNER_END) + r"\n?",
+            re.DOTALL,
+        )
+        if pattern.search(content):
+            new_content = pattern.sub(banner.rstrip("\n") + "\n", content, count=1)
+        else:
+            new_content = banner + content
+
+    if new_content != content:
+        with open(README_PATH, "w", encoding="utf-8") as f:
+            f.write(new_content)
+        print(f"README.md banner {'set' if error_msg else 'cleared'}.")
+
+
 def main() -> int:
     cookie = os.environ.get("MUSIC_U", "").strip()
     if not cookie:
         write_svg(build_svg("Kevin", [], "Set MUSIC_U secret in repo settings"))
-        print("MUSIC_U not set; wrote placeholder.")
+        update_readme_banner("MUSIC_U secret is not set")
+        print("MUSIC_U not set; wrote placeholder + banner.")
         return 0
 
     try:
         nickname, songs = fetch(cookie)
+    except CookieExpiredError as exc:
+        print(f"Cookie expired: {exc}", file=sys.stderr)
+        write_svg(build_svg("Kevin", [], "Cookie expired"))
+        update_readme_banner(str(exc))
+        return 0
     except Exception as exc:
         print(f"Fetch failed: {exc}", file=sys.stderr)
         write_svg(build_svg("Kevin", [], "API error — try again later"))
+        update_readme_banner(f"transient API error: {exc}")
         return 0
 
     if not songs:
         write_svg(build_svg(nickname, [], "No plays this week"))
+        update_readme_banner(None)
         print("No weekly plays; wrote empty-state card.")
         return 0
 
     write_svg(build_svg(nickname, songs))
+    update_readme_banner(None)
     print(f"Wrote musicCard.svg ({len(songs)} songs).")
     return 0
 
