@@ -7,9 +7,9 @@
 
 ---
 
-## 👋 About Me
+<h2 align="center">👋 About Me</h2>
 
-> 🎓 Go backend intern — but Java is my stronger stack.
+> 🎓 Go backend intern - but Java is my stronger stack.
 > In my free time learning AI application development, grinding LeetCode, and studying English.
 >
 > 💬 **Open to chat about:** Java/Go backend · LLM applications · Job hunting & interviews · Campus recruiting / internship experience
@@ -17,7 +17,7 @@
 
 ---
 
-## 💻 What I Code With
+<h2 align="center">💻 What I Code With</h2>
 
 <div align="center">
 
@@ -27,7 +27,7 @@
 
 ---
 
-## 📊 GitHub Stats
+<h2 align="center">📊 GitHub Stats</h2>
 
 <div align="center">
 
@@ -58,7 +58,7 @@
 
 ---
 
-## 🤝 Connect with Me
+<h2 align="center">🤝 Connect with Me</h2>
 
 <div align="center">
 
@@ -69,9 +69,11 @@
 
 ---
 
+<h2 align="center">👁️ Page Views</h2>
+
 <div align="center">
 
-<img src="https://count.getloli.com/get/@KevinDeng-0411?theme=miku" alt="Visitor Count" />
+<img src="https://count.getloli.com/get/@KevinDeng-0411?theme=miku" width="400" alt="Page Views" />
 
 <sub>⭐️ Inspired by the GitHub community. Feel free to fork & customize.</sub>
 
