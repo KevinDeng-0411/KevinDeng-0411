@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Pillow
+        run: pip install pillow
+
       - name: Generate visitor card
         env:
           VISITOR_TOKEN: ${{ secrets.VISITOR_TOKEN }}

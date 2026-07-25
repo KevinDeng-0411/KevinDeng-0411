@@ -22,7 +22,7 @@ import urllib.request
 OWNER = "KevinDeng-0411"
 REPO = "KevinDeng-0411"
 
-TAGS = ["hug", "pat", "cuddle", "wave", "smile"]
+TAGS = ["neko", "kitsune"]
 
 THEME_BG = "#1a1b27"
 THEME_CARD = "#24283b"
@@ -96,11 +96,14 @@ def fetch_character() -> dict | None:
     tag = random.choice(TAGS)
     try:
         meta_req = urllib.request.Request(
-            f"https://api.waifu.pics/sfw/{tag}",
+            f"https://nekos.best/api/v2/{tag}",
             headers={"User-Agent": "github-profile-visitor-bot"},
         )
         with urllib.request.urlopen(meta_req, timeout=15) as resp:
-            url = json.loads(resp.read()).get("url")
+            results = json.loads(resp.read()).get("results", [])
+        if not results:
+            return None
+        url = results[0].get("url")
         if not url:
             return None
 
@@ -110,15 +113,32 @@ def fetch_character() -> dict | None:
         )
         with urllib.request.urlopen(img_req, timeout=20) as resp:
             data = resp.read()
-        mime = "image/jpeg" if url.lower().endswith((".jpg", ".jpeg")) else "image/png"
+
+        data_uri = resize_to_data_uri(data, size=200)
         return {
-            "data_uri": f"data:{mime};base64," + base64.b64encode(data).decode("ascii"),
+            "data_uri": data_uri,
             "tag": tag,
             "source": url,
         }
     except Exception as exc:
         print(f"character fetch failed ({tag}): {exc}", file=sys.stderr)
         return None
+
+
+def resize_to_data_uri(data: bytes, size: int = 200) -> str:
+    try:
+        from PIL import Image
+        import io
+
+        img = Image.open(io.BytesIO(data))
+        img = img.convert("RGB").resize((size, size), Image.LANCZOS)
+        buf = io.BytesIO()
+        img.save(buf, format="JPEG", quality=85, optimize=True)
+        encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+        return f"data:image/jpeg;base64,{encoded}"
+    except ImportError:
+        mime = "image/png"
+        return f"data:{mime};base64," + base64.b64encode(data).decode("ascii")
 
 
 def load_last_character() -> dict | None:
