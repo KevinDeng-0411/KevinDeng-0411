@@ -1,8 +1,12 @@
-"""Generate NetEase Cloud Music card — Spotify-style.
+"""Generate NetEase Cloud Music weekly ranking card.
 
-Shows the user's top song this week ("Current Playing" stand-in, since NetEase
-has no real-time now-playing endpoint) plus weekly ranking of next songs.
-Pulled via /api/v1/play/record (the /week variant was deprecated).
+NetEase deprecated /api/v1/play/record/week — the new endpoint is
+/api/v1/play/record with type=1, which still returns weekData sorted by
+play count within the past 7 days. We render that as a Spotify-style
+"Recently Played" list with album art and play counts.
+
+Real-time "currently playing" isn't available via NetEase's public API,
+so we don't try to show it.
 """
 
 import json
@@ -15,25 +19,16 @@ THEME_BG = "#1a1b27"
 THEME_CARD = "#24283b"
 THEME_FG = "#c0caf5"
 THEME_TITLE = "#ffffff"
-THEME_ACCENT = "#7aa2f7"
 THEME_MUTED = "#565f89"
 THEME_GREEN = "#1db954"
 
 WIDTH = 460
-COVER_LG = 96
 COVER_SM = 40
 PAD = 18
-ROW_GAP = 10
+ROW_GAP = 8
 HEADER_H = 56
-CURRENT_H = COVER_LG + 2 * PAD
-RECENT_ROW_H = COVER_SM + ROW_GAP
+LIST_HEADER_H = 24
 FOOTER_H = 14
-
-RECENT_TIMES = [
-    "Just now", "1 hr. ago", "3 hr. ago", "5 hr. ago",
-    "8 hr. ago", "Today", "Yesterday", "2 days ago",
-    "3 days ago", "5 days ago",
-]
 
 
 def fetch(cookie: str) -> tuple[str, list[dict]]:
@@ -103,23 +98,16 @@ def truncate(text: str, n: int) -> str:
 
 
 def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
-    n_recent = max(len(songs) - 1, 0)
-    show_weekly = songs and not error_msg
-    height = (
-        HEADER_H
-        + CURRENT_H
-        + 30
-        + n_recent * RECENT_ROW_H
-        + FOOTER_H
-    )
-
+    n = len(songs)
+    height = HEADER_H + LIST_HEADER_H + max(n, 1) * (COVER_SM + ROW_GAP) + FOOTER_H
     nick = escape((nickname or "KEVIN").upper())[:14]
+    show_list = bool(songs) and not error_msg
+
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
         f'width="{WIDTH}" height="{height}" viewBox="0 0 {WIDTH} {height}" '
         f'font-family="-apple-system, Segoe UI, Roboto, sans-serif">',
         f'<rect width="100%" height="100%" fill="{THEME_BG}" rx="12"/>',
-        # Header — two blocks (Spotify-style)
         f'<g transform="translate({PAD},{PAD})">',
         f'<rect x="0" y="0" width="96" height="28" rx="6" fill="#1f2330"/>',
         f'<text x="14" y="19" fill="{THEME_GREEN}" font-size="14" font-weight="700">♪</text>',
@@ -130,77 +118,44 @@ def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
         f'</g>',
     ]
 
-    cy = HEADER_H + 4
-    label = "Top This Week:" if show_weekly else "Current Playing:"
+    # List header
+    lh_y = HEADER_H + 18
+    label = "Recently Played · Past 7 Days" if show_list else (error_msg or "No plays yet")
     parts.append(
-        f'<text x="{WIDTH / 2}" y="{cy + 14}" text-anchor="middle" '
-        f'fill="{THEME_FG}" font-size="14" font-weight="600">{label}</text>'
+        f'<text x="{WIDTH / 2}" y="{lh_y}" text-anchor="middle" fill="{THEME_FG}" '
+        f'font-size="13" font-weight="600">{escape(truncate(label, 38))}</text>'
     )
 
-    card_y = cy + 26
-    parts.append(
-        f'<rect x="{PAD}" y="{card_y}" width="{WIDTH - 2 * PAD}" '
-        f'height="{CURRENT_H - PAD}" rx="10" fill="{THEME_CARD}"/>'
-    )
-
-    if show_weekly:
-        cur = songs[0]
+    if not show_list:
+        msg_y = lh_y + 40
         parts.append(
-            f'<image href="{escape(cur["cover"])}" x="{PAD + 10}" y="{card_y + 10}" '
-            f'width="{COVER_LG}" height="{COVER_LG}" preserveAspectRatio="xMidYMid slice"/>'
+            f'<text x="{WIDTH / 2}" y="{msg_y}" text-anchor="middle" fill="{THEME_MUTED}" '
+            f'font-size="12">Once you start playing on NetEase, your weekly ranking shows up here.</text>'
         )
-        text_x = PAD + 10 + COVER_LG + 16
-        parts.append(
-            f'<text x="{text_x}" y="{card_y + 38}" fill="{THEME_TITLE}" '
-            f'font-size="16" font-weight="700">{escape(truncate(cur["name"], 22))}</text>'
-        )
-        parts.append(
-            f'<text x="{text_x}" y="{card_y + 60}" fill="{THEME_MUTED}" '
-            f'font-size="12">{escape(truncate(cur["artists"], 28))}</text>'
-        )
-        plays = cur.get("score", 0)
-        if plays:
-            parts.append(
-                f'<text x="{text_x}" y="{card_y + 80}" fill="{THEME_GREEN}" '
-                f'font-size="11" font-weight="600">▶ {plays} plays this week</text>'
-            )
     else:
-        msg = error_msg or "No plays recorded this week"
-        parts.append(
-            f'<text x="{WIDTH / 2}" y="{card_y + (CURRENT_H - PAD) / 2 + 4}" '
-            f'text-anchor="middle" fill="{THEME_MUTED}" font-size="13">{escape(truncate(msg, 40))}</text>'
-        )
-
-    ry = card_y + (CURRENT_H - PAD) + 18
-    parts.append(
-        f'<text x="{WIDTH / 2}" y="{ry}" text-anchor="middle" fill="{THEME_FG}" '
-        f'font-size="13" font-weight="600">▼ Weekly Ranking</text>'
-    )
-
-    list_y = ry + 14
-    for i, song in enumerate(songs[1:], start=1):
-        row_y = list_y + (i - 1) * RECENT_ROW_H
-        parts.append(
-            f'<image href="{escape(song["cover"])}" x="{PAD}" y="{row_y}" '
-            f'width="{COVER_SM}" height="{COVER_SM}" preserveAspectRatio="xMidYMid slice"/>'
-        )
-        rank = f"{i + 1}."
-        text_x = PAD + COVER_SM + 12
-        parts.append(
-            f'<text x="{text_x}" y="{row_y + 18}" fill="{THEME_TITLE}" '
-            f'font-size="13" font-weight="600">'
-            f'<tspan fill="{THEME_MUTED}" font-weight="500">{rank} </tspan>'
-            f'{escape(truncate(song["name"], 22))}</text>'
-        )
-        parts.append(
-            f'<text x="{text_x}" y="{row_y + 34}" fill="{THEME_MUTED}" '
-            f'font-size="11">{escape(truncate(song["artists"], 26))}</text>'
-        )
-        plays = song.get("score", 0)
-        parts.append(
-            f'<text x="{WIDTH - PAD}" y="{row_y + 24}" text-anchor="end" '
-            f'fill="{THEME_GREEN}" font-size="11" font-weight="600">{plays}×</text>'
-        )
+        list_y = lh_y + 18
+        for i, song in enumerate(songs):
+            row_y = list_y + i * (COVER_SM + ROW_GAP)
+            parts.append(
+                f'<image href="{escape(song["cover"])}" x="{PAD}" y="{row_y}" '
+                f'width="{COVER_SM}" height="{COVER_SM}" preserveAspectRatio="xMidYMid slice"/>'
+            )
+            text_x = PAD + COVER_SM + 12
+            parts.append(
+                f'<text x="{text_x}" y="{row_y + 18}" fill="{THEME_TITLE}" '
+                f'font-size="13" font-weight="600">'
+                f'<tspan fill="{THEME_MUTED}" font-weight="500">{i + 1:>2}. </tspan>'
+                f'{escape(truncate(song["name"], 22))}</text>'
+            )
+            parts.append(
+                f'<text x="{text_x}" y="{row_y + 34}" fill="{THEME_MUTED}" '
+                f'font-size="11">{escape(truncate(song["artists"], 26))}</text>'
+            )
+            plays = song.get("score", 0)
+            parts.append(
+                f'<text x="{WIDTH - PAD}" y="{row_y + 24}" text-anchor="end" '
+                f'fill="{THEME_GREEN}" font-size="12" font-weight="700">{plays}×</text>'
+            )
 
     parts.append("</svg>")
     return "\n".join(parts)
@@ -222,16 +177,16 @@ def main() -> int:
         nickname, songs = fetch(cookie)
     except Exception as exc:
         print(f"Fetch failed: {exc}", file=sys.stderr)
-        write_svg(build_svg("Kevin", [], f"API error — try again later"))
+        write_svg(build_svg("Kevin", [], "API error — try again later"))
         return 0
 
     if not songs:
-        write_svg(build_svg(nickname, [], "No plays this week yet"))
+        write_svg(build_svg(nickname, [], "No plays this week"))
         print("No weekly plays; wrote empty-state card.")
         return 0
 
     write_svg(build_svg(nickname, songs))
-    print(f"Wrote musicCard.svg (top 1 + {len(songs) - 1} ranked).")
+    print(f"Wrote musicCard.svg ({len(songs)} songs).")
     return 0
 
 
