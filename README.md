@@ -1,3 +1,7 @@
+<!-- NETEASE_BANNER_START -->
+> ⚠️ **NetEase Music Card unavailable** — Cookie expired. [Update `MUSIC_U` secret](https://github.com/KevinDeng-0411/KevinDeng-0411/settings/secrets/actions) · _last attempt: 2026-07-25 13:16 UTC, error: `account API code=200: `_
+<!-- NETEASE_BANNER_END -->
+
 
 <div align="center">
 
