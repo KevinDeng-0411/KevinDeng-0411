@@ -71,7 +71,7 @@
 
 <div align="center">
 
-![Visitor Count](https://komarev.com/ghpvc/?username=KevinDeng-0411&style=flat-square&color=blue)
+<img src="visitorCard.svg" width="460" alt="Visitor Count" />
 
 <sub>⭐️ Inspired by the GitHub community. Feel free to fork & customize.</sub>
 

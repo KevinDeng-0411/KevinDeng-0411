@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="180" viewBox="0 0 460 180" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+<rect width="100%" height="100%" fill="#1a1b27" rx="12"/>
+<defs><clipPath id="char-round"><rect x="24" y="24" width="80" height="80" rx="12"/></clipPath></defs>
+<rect x="24" y="24" width="80" height="80" rx="12" fill="#24283b"/>
+<path d="M 39,59 a 25,25 0 1 1 50,0 v 27 q -8,8 -16,0 q -8,-8 -16,0 q -8,8 -18,0 z" fill="#c0caf5"/>
+<ellipse cx="55" cy="56" rx="3.5" ry="5.5" fill="#1a1b27"/>
+<ellipse cx="73" cy="56" rx="3.5" ry="5.5" fill="#1a1b27"/>
+<circle cx="49" cy="64" r="3" fill="#f7768e" opacity="0.7"/>
+<circle cx="79" cy="64" r="3" fill="#f7768e" opacity="0.7"/>
+<text x="128" y="62" fill="#ffffff" font-size="40" font-weight="800">0</text>
+<text x="128" y="84" fill="#f7768e" font-size="12" font-weight="700" letter-spacing="2">VISITORS</text>
+<text x="128" y="104" fill="#565f89" font-size="11">since 2026-07-25  ·  today +0  ·  ghost</text>
+<text x="436" y="168" text-anchor="end" fill="#e0af68" font-size="10">⚠ HTTP 401</text>
+</svg>

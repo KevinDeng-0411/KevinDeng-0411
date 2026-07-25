@@ -1,0 +1,28 @@
+name: Visitor Counter
+
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate visitor card
+        env:
+          VISITOR_TOKEN: ${{ secrets.VISITOR_TOKEN }}
+        run: python3 .github/scripts/visitor_counter.py
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add visitors.json visitorCard.svg last_character.json
+          git diff --staged --quiet || (git commit -m "chore: update visitor card" && git push)
