@@ -9,11 +9,11 @@
 <text x="230.0" y="74" text-anchor="middle" fill="#c0caf5" font-size="14" font-weight="600">Current Playing:</text>
 <rect x="18" y="86" width="424" height="114" rx="10" fill="#24283b"/>
 <image href="" x="28" y="96" width="96" height="96" preserveAspectRatio="xMidYMid slice"/>
-<text x="140" y="124" fill="#ffffff" font-size="16" font-weight="700">Set MUSIC_U secret to…</text>
-<text x="140" y="146" fill="#565f89" font-size="12">—</text>
+<text x="140" y="124" fill="#ffffff" font-size="16" font-weight="700">Cookie expired</text>
+<text x="140" y="146" fill="#565f89" font-size="12">'NoneType' object is not su…</text>
 <text x="230.0" y="218" text-anchor="middle" fill="#c0caf5" font-size="13" font-weight="600">▼ Recently Played</text>
 <image href="" x="18" y="232" width="40" height="40" preserveAspectRatio="xMidYMid slice"/>
-<text x="70" y="250" fill="#ffffff" font-size="13" font-weight="600">Set MUSIC_U secret …</text>
-<text x="70" y="266" fill="#565f89" font-size="11">—</text>
+<text x="70" y="250" fill="#ffffff" font-size="13" font-weight="600">Please update MUSIC…</text>
+<text x="70" y="266" fill="#565f89" font-size="11">Settings → Secrets → Ac…</text>
 <text x="442" y="256" text-anchor="end" fill="#565f89" font-size="11">1 hr. ago</text>
 </svg>
