@@ -1,0 +1,76 @@
+name: Test NetEase Login
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install API package
+        run: npm install @neteasecloudmusicapienhanced/api
+
+      - name: Run login test
+        env:
+          NETEASE_PHONE: ${{ secrets.NETEASE_PHONE }}
+          NETEASE_PASSWORD: ${{ secrets.NETEASE_PASSWORD }}
+        run: |
+          cat > test-login.mjs << 'EOF'
+          import { login_cellphone, user_account } from '@neteasecloudmusicapienhanced/api';
+
+          const phone = process.env.NETEASE_PHONE;
+          const password = process.env.NETEASE_PASSWORD;
+
+          if (!phone || !password) {
+            console.error('Missing NETEASE_PHONE or NETEASE_PASSWORD');
+            process.exit(1);
+          }
+
+          console.log(`Phone: ${phone.slice(0,3)}***${phone.slice(-4)}`);
+
+          try {
+            const loginResult = await login_cellphone({ phone, password, countrycode: '86' });
+            console.log('Login status:', loginResult.status);
+            console.log('Login body code:', loginResult.body?.code);
+            console.log('Login message:', loginResult.body?.message || '(none)');
+
+            if (loginResult.body?.code !== 200) {
+              console.error('Login failed. Full body:', JSON.stringify(loginResult.body).slice(0, 500));
+              process.exit(1);
+            }
+
+            const cookie = loginResult.body.cookie;
+            if (!cookie) {
+              console.error('No cookie in login response');
+              process.exit(1);
+            }
+
+            console.log('Got cookie, length:', cookie.length);
+            const musicUMatch = cookie.match(/MUSIC_U=([^;]+)/);
+            console.log('MUSIC_U length:', musicUMatch?.[1]?.length || 0);
+
+            const accountResult = await user_account({ cookie });
+            console.log('Account check code:', accountResult.body?.code);
+            console.log('Nickname:', accountResult.body?.profile?.nickname);
+
+            if (accountResult.body?.code === 200) {
+              console.log('SUCCESS: login + cookie verification passed');
+            } else {
+              console.log('FAIL: cookie verification failed');
+              console.log('Account body:', JSON.stringify(accountResult.body).slice(0, 500));
+            }
+          } catch (e) {
+            console.error('Test exception:', e.message);
+            console.error(e.stack);
+            process.exit(1);
+          }
+          EOF
+          node test-login.mjs
