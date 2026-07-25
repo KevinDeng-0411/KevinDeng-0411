@@ -26,7 +26,7 @@ jobs:
           cat > test-login.cjs << 'EOF'
           const { login_cellphone, user_account } = require('@neteasecloudmusicapienhanced/api');
 
-          const phone = process.env.NETEASE_PHONE;
+          let phone = process.env.NETEASE_PHONE;
           const password = process.env.NETEASE_PASSWORD;
 
           if (!phone || !password) {
@@ -34,7 +34,14 @@ jobs:
             process.exit(1);
           }
 
-          console.log(`Phone: ${phone.slice(0,3)}***${phone.slice(-4)}`);
+          // Strip country code prefix if present (e.g. 8613812345678 -> 13812345678 + countrycode=86)
+          let countrycode = '86';
+          if (phone.length > 11 && /^(\d{1,3})\d{11}$/.test(phone)) {
+            countrycode = phone.slice(0, phone.length - 11);
+            phone = phone.slice(phone.length - 11);
+          }
+
+          console.log(`Phone: ${phone.slice(0,3)}***${phone.slice(-4)} (countrycode=${countrycode})`);
 
           (async () => {
             try {
