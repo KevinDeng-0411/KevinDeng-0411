@@ -15,6 +15,17 @@
 > 💬 **Open to chat about:** Java/Go backend · LLM applications · Job hunting & interviews · Campus recruiting / internship experience
 > 📮 **Reach me:** [Email](mailto:dengkaifan1115@gmail.com) is fastest
 
+<details>
+<summary>🌐 查看中文版</summary>
+
+> 🎓 Java/Go 后端，正在努力学习 AI Agent 开发，往这个方向靠拢。
+> 业余时间刷 LeetCode、练英语。
+>
+> 💬 **欢迎聊聊：** Java/Go 后端 · LLM 应用 · AI Agent · 求职与面试 · 校招 / 实习经验
+> 📮 **联系我：** [邮箱](mailto:dengkaifan1115@gmail.com) 最快
+
+</details>
+
 ---
 
 <h2 align="center">💻 What I Code With</h2>
