@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="80" viewBox="0 0 480 80" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="100%" height="100%" fill="#1a1b27" rx="10"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#7aa2f7" font-size="14">
+    🎵 NetEase Music Card · run workflow after setting MUSIC_U secret
+  </text>
+</svg>
