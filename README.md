@@ -31,13 +31,13 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/stats-card.svg" width="410" alt="GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api?username=KevinDeng-0411&theme=tokyonight&show_icons=true&hide_border=true&count_private=true" width="410" alt="GitHub Stats" />
 &nbsp;
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/streak-card.svg" width="410" alt="GitHub Streak" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=KevinDeng-0411&theme=tokyonight&hide_border=true" width="410" alt="GitHub Streak" />
 
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/languages-card.svg" width="820" alt="Top Languages" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=KevinDeng-0411&theme=tokyonight&layout=compact&hide_border=true&langs_count=8" width="820" alt="Top Languages" />
 
-<sub>Updated daily via GitHub Actions · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/github-stats.yml">workflow</a></sub>
+<sub>Powered by <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a> · <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a></sub>
 
 </div>
 
