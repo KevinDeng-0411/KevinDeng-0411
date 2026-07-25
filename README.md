@@ -7,6 +7,18 @@
 
 ---
 
+<h2 align="center">👁️ Page Views</h2>
+
+<div align="center">
+
+<img src="https://count.getloli.com/get/@KevinDeng-0411?theme=miku" width="480" alt="Page Views" />
+
+<sub>⭐️ Inspired by the GitHub community. Feel free to fork & customize.</sub>
+
+</div>
+
+---
+
 <h2 align="center">👋 About Me</h2>
 
 > 🎓 Go backend intern - but Java is my stronger stack.
@@ -80,17 +92,5 @@
 
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dengkaifan1115@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KevinDeng-0411)
-
-</div>
-
----
-
-<h2 align="center">👁️ Page Views</h2>
-
-<div align="center">
-
-<img src="https://count.getloli.com/get/@KevinDeng-0411?theme=miku" width="400" alt="Page Views" />
-
-<sub>⭐️ Inspired by the GitHub community. Feel free to fork & customize.</sub>
 
 </div>
