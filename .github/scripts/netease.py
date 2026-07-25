@@ -118,8 +118,6 @@ def fetch(cookie: str) -> tuple[str, list[dict]]:
                 "artists": "/".join(a.get("name", "") for a in artists)
                 or (s.get("artist") or {}).get("name", ""),
                 "cover": fetch_cover_data_uri(pic),
-                "play_count": item.get("playCount", 0),
-                "score": item.get("score", 0),
             }
         )
 
@@ -199,12 +197,6 @@ def build_svg(nickname: str, songs: list[dict], error_msg: str = "") -> str:
             parts.append(
                 f'<text x="{text_x}" y="{row_y + 34}" fill="{THEME_MUTED}" '
                 f'font-size="11">{escape(truncate(song["artists"], 26))}</text>'
-            )
-            plays = song.get("play_count", 0)
-            plays_text = f"{plays} plays" if plays else "—"
-            parts.append(
-                f'<text x="{WIDTH - PAD}" y="{row_y + 24}" text-anchor="end" '
-                f'fill="{THEME_RED_LIGHT}" font-size="11" font-weight="700">{plays_text}</text>'
             )
 
     parts.append("</svg>")
