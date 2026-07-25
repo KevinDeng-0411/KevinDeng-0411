@@ -1,0 +1,31 @@
+name: Refresh Stats Cards
+
+on:
+  schedule:
+    - cron: "7 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch SVGs from Vercel
+        run: |
+          set -e
+          curl -fsSL --max-time 30 "https://github-readme-stats.vercel.app/api?username=KevinDeng-0411&theme=tokyonight&show_icons=true&hide_border=true&count_private=true" -o stats-card.svg
+          curl -fsSL --max-time 30 "https://github-readme-stats.vercel.app/api/top-langs/?username=KevinDeng-0411&theme=tokyonight&layout=compact&hide_border=true&langs_count=8" -o languages-card.svg
+          grep -q '<svg' stats-card.svg || { echo "stats-card.svg is not SVG"; cat stats-card.svg; exit 1; }
+          grep -q '<svg' languages-card.svg || { echo "languages-card.svg is not SVG"; cat languages-card.svg; exit 1; }
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats-card.svg languages-card.svg
+          git diff --staged --quiet || (git commit -m "chore: refresh stats cards" && git push)
