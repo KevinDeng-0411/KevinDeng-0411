@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: netease-music-card
+  cancel-in-progress: true
+
 jobs:
   update-card:
     runs-on: ubuntu-latest
