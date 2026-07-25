@@ -21,7 +21,7 @@
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=java,python,go,spring,mysql,redis,postgres,mongodb,kafka,rabbitmq,docker,kubernetes,nginx,git,github,linux,vscode,pytorch&theme=dark&perline=10" alt="Tech Stack" />
+<img src="https://skillicons.dev/icons?i=java,spring,springboot,mybatis,mybatisplus,maven,intellijidea,go,gin,gorm,mysql,postgres,redis,mongodb,elasticsearch,kafka,rabbitmq,docker,kubernetes,nginx,postman,git,github,python,vscode,linux,pytorch&theme=dark&perline=9" alt="Tech Stack" />
 
 </div>
 
