@@ -64,7 +64,7 @@
 
 <img src="https://github-readme-stats.shion.dev/api/top-langs/?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true&layout=compact" width="460" alt="Top Languages" />
 
-<sub>Powered by <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a> (shion.dev mirror) · <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a></sub>
+
 
 </div>
 
