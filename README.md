@@ -14,7 +14,7 @@
 
 <img src="https://count.getloli.com/get/@KevinDeng-0411?theme=miku" width="480" alt="Page Views" />
 
-<sub>⭐️ Inspired by the GitHub community. Feel free to fork & customize.</sub>
+
 
 </div>
 
