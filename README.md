@@ -27,21 +27,6 @@
 
 ---
 
-<details>
-<summary><b>🎧 Recently Played · NetEase Cloud Music</b></summary>
-
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/musicCard.svg" alt="NetEase Weekly Ranking" />
-
-<sub>Weekly ranking from NetEase Cloud Music · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/netease-music-card.yml">auto-updated daily</a></sub>
-
-</div>
-
-</details>
-
----
-
 ## 📊 GitHub Stats
 
 <div align="center">
@@ -55,6 +40,21 @@
 <sub>Updated daily via GitHub Actions · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/github-stats.yml">workflow</a></sub>
 
 </div>
+
+---
+
+<details>
+<summary><b>🎧 Recently Played · NetEase Cloud Music</b></summary>
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/musicCard.svg" alt="NetEase Weekly Ranking" />
+
+<sub>Weekly ranking from NetEase Cloud Music · <a href="https://github.com/KevinDeng-0411/KevinDeng-0411/actions/workflows/netease-music-card.yml">auto-updated daily</a></sub>
+
+</div>
+
+</details>
 
 ---
 
