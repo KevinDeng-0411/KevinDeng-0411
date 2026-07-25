@@ -58,11 +58,11 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats.shion.dev/api?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true" width="480" alt="GitHub Stats" />
+<img src="https://github-readme-stats.shion.dev/api?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true" width="600" alt="GitHub Stats" />
 
-<img src="https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=radical&hide_border=false" width="480" alt="GitHub Streak" />
+<img src="https://streak-stats.demolab.com/?user=KevinDeng-0411&theme=radical&hide_border=false" width="600" alt="GitHub Streak" />
 
-<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true&layout=compact" width="480" alt="Top Languages" />
+<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true&layout=compact" width="600" alt="Top Languages" />
 
 
 
