@@ -18,7 +18,7 @@
 <details>
 <summary>🌐 查看中文版</summary>
 
-> 🎓 Java/Go 后端，正在努力学习 AI Agent 开发，往这个方向靠拢。
+> 🎓 Java/Go 后端，正在深耕 AI Agent 开发。
 > 业余时间刷 LeetCode、练英语。
 >
 > 💬 **欢迎聊聊：** Java/Go 后端 · LLM 应用 · AI Agent · 求职与面试 · 校招 / 实习经验
@@ -40,6 +40,9 @@
 
 <h2 align="center">📊 GitHub Stats</h2>
 
+<details>
+<summary><b>点击展开 · View stats cards</b></summary>
+
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/KevinDeng-0411/KevinDeng-0411/main/stats-card.svg" width="410" alt="GitHub Stats" />
@@ -51,6 +54,8 @@
 <sub>Powered by <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a> (cached daily via Actions) · <a href="https://github.com/DenverCoder1/github-readme-streak-stats">streak-stats</a></sub>
 
 </div>
+
+</details>
 
 ---
 
