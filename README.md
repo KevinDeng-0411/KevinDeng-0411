@@ -21,7 +21,7 @@
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=java,spring,go,mysql,redis,mongodb,elasticsearch,kafka,docker,kubernetes,nginx,git,github,python,vscode&theme=dark&perline=5" alt="Tech Stack" />
+<img src="https://skillicons.dev/icons?i=java,spring,springboot,go,mysql,redis,mongodb,elasticsearch,kafka,docker,kubernetes,nginx,python,fastapi,langchain,git,github,vscode&theme=dark&perline=6" alt="Tech Stack" />
 
 </div>
 
