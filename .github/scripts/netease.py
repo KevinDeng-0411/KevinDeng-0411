@@ -37,19 +37,40 @@ def fetch_cover_data_uri(url: str) -> str:
     """
     if not url:
         return ""
-    try:
-        req = urllib.request.Request(
-            url,
-            headers={
-                "User-Agent": "Mozilla/5.0",
-                "Referer": "https://music.163.com/",
-            },
-        )
-        data = urllib.request.urlopen(req, timeout=10).read()
-        return "data:image/jpeg;base64," + base64.b64encode(data).decode("ascii")
-    except Exception as exc:
-        print(f"cover fetch failed: {exc}", file=sys.stderr)
-        return url  # fall back to URL; will likely render broken but doesn't crash
+
+    cdn_nodes = ["p1", "p2", "p3", "p4"]
+    chrome_ua = (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+    )
+
+    for attempt in range(3):
+        test_url = url
+        if attempt > 0:
+            for node in cdn_nodes:
+                if f"{node}.music.126.net" in url:
+                    new_node = cdn_nodes[attempt % len(cdn_nodes)]
+                    test_url = url.replace(f"{node}.music.126.net", f"{new_node}.music.126.net")
+                    break
+        try:
+            req = urllib.request.Request(
+                test_url,
+                headers={
+                    "User-Agent": chrome_ua,
+                    "Referer": "https://music.163.com/",
+                },
+            )
+            data = urllib.request.urlopen(req, timeout=20).read()
+            if len(data) < 100:
+                raise ValueError(f"suspiciously small response: {len(data)} bytes")
+            return "data:image/jpeg;base64," + base64.b64encode(data).decode("ascii")
+        except Exception as exc:
+            print(f"cover fetch attempt {attempt+1}/3 failed for {test_url[:80]}: {exc}", file=sys.stderr)
+            if attempt < 2:
+                time.sleep(2)
+
+    print(f"cover fetch all 3 attempts failed, falling back to URL: {url[:80]}", file=sys.stderr)
+    return url
 
 WIDTH = 460
 COVER_SM = 40
