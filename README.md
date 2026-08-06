@@ -53,9 +53,6 @@
 
 <h2 align="center">📊 GitHub Stats</h2>
 
-<details>
-<summary><b>点击展开 · View stats cards</b></summary>
-
 <div align="center">
 
 <img src="https://github-readme-stats.shion.dev/api?username=KevinDeng-0411&theme=radical&hide_border=false&include_all_commits=true&count_private=true" width="450" alt="GitHub Stats" />
@@ -67,8 +64,6 @@
 
 
 </div>
-
-</details>
 
 ---
 
