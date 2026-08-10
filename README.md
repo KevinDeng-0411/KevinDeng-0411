@@ -43,23 +43,10 @@
 <details>
 <summary>🌐 查看中文版</summary>
 
-> 热爱把代码变成能真正解决问题的工具，相信好的软件源于扎实的功底。目前是 Go 后端实习生，Java 是主力栈，正在深耕 AI Agent 开发。
->
-> 🎓 **合肥工业大学 · 计算机科学与技术**
->
-> • **技术栈：** Java, Go, Python, Spring Boot, MySQL, Redis, MongoDB, Elasticsearch, Kafka
-> • **工具与框架：** Docker, Kubernetes, Nginx, Git & GitHub, FastAPI
->
-> **正在探索：**
-> • AI Agent 与 LLM 应用
-> • 数据结构与算法、系统设计
->
-> **软技能：** 解决问题、适应力强、上手快、表达清晰
->
-> 💬 **欢迎聊聊：** Java/Go 后端 · LLM 应用 · AI Agent · 求职与面试 · 校招 / 实习经验
-> 📮 **联系我：** [邮箱](mailto:dengkaifan1115@gmail.com) 最快
->
-> 始终乐于学习和协作，一起做点有意思的东西吧！
+> Go 后端实习中，Java 主力栈，正在深耕 AI Agent 开发。
+> 🎓 合肥工业大学 · 计算机科学与技术
+> 技术栈：Java/Go/Python、Spring Boot、MySQL、Redis、Elasticsearch、Kafka，Docker/K8s 容器化。
+> 正在学：AI Agent · LLM · 数据结构与算法。欢迎交流，邮箱最快。
 
 </details>
 
