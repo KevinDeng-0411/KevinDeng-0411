@@ -22,20 +22,44 @@
 
 <h2 align="center">👋 About Me</h2>
 
-> 🎓 Go backend intern - but Java is my stronger stack.
-> In my free time learning AI application development, grinding LeetCode, and studying English.
+> As a backend engineer who loves building things that actually work, I see code not just as syntax — but as a craft for solving real problems. Currently interning as a Go backend developer, with Java as my stronger stack, and now focusing on AI agent development.
+>
+> 🎓 **Computer Science & Technology**, Hefei University of Technology
+>
+> • **Tech Stack:** Java, Go, Python, Spring Boot, MySQL, Redis, MongoDB, Elasticsearch, Kafka
+> • **Tools & Frameworks:** Docker, Kubernetes, Nginx, Git & GitHub, FastAPI
+>
+> **Currently Exploring:**
+> • AI agents & LLM applications
+> • DSA & system design
+>
+> **Soft Skills:** Problem-solving, adaptability, quick learning, clear communication
 >
 > 💬 **Open to chat about:** Java/Go backend · LLM applications · Job hunting & interviews · Campus recruiting / internship experience
 > 📮 **Reach me:** [Email](mailto:dengkaifan1115@gmail.com) is fastest
+>
+> Always open to learning, networking, and collaborating. Let's build something together!
 
 <details>
 <summary>🌐 查看中文版</summary>
 
-> 🎓 Java/Go 后端，正在深耕 AI Agent 开发。
-> 业余时间刷 LeetCode、准备面试八股。
+> 热爱把代码变成能真正解决问题的工具，相信好的软件源于扎实的功底。目前是 Go 后端实习生，Java 是主力栈，正在深耕 AI Agent 开发。
+>
+> 🎓 **合肥工业大学 · 计算机科学与技术**
+>
+> • **技术栈：** Java, Go, Python, Spring Boot, MySQL, Redis, MongoDB, Elasticsearch, Kafka
+> • **工具与框架：** Docker, Kubernetes, Nginx, Git & GitHub, FastAPI
+>
+> **正在探索：**
+> • AI Agent 与 LLM 应用
+> • 数据结构与算法、系统设计
+>
+> **软技能：** 解决问题、适应力强、上手快、表达清晰
 >
 > 💬 **欢迎聊聊：** Java/Go 后端 · LLM 应用 · AI Agent · 求职与面试 · 校招 / 实习经验
 > 📮 **联系我：** [邮箱](mailto:dengkaifan1115@gmail.com) 最快
+>
+> 始终乐于学习和协作，一起做点有意思的东西吧！
 
 </details>
 
