@@ -1,5 +1,5 @@
 <!-- NETEASE_BANNER_START -->
-> ⚠️ **NetEase Music Card unavailable** — Cookie expired. [Update `MUSIC_U` secret](https://github.com/KevinDeng-0411/KevinDeng-0411/settings/secrets/actions) · _last attempt: 2026-10-20 10:52 UTC, error: `transient API error (will retry next run): account API code=200: `_
+> ⚠️ **NetEase Music Card unavailable** — Cookie expired. [Update `MUSIC_U` secret](https://github.com/KevinDeng-0411/KevinDeng-0411/settings/secrets/actions) · _last attempt: 2026-10-20 16:16 UTC, error: `transient API error (will retry next run): account API code=200: `_
 <!-- NETEASE_BANNER_END -->
 
 
