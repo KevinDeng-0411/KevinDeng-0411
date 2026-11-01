@@ -14,10 +14,10 @@ concurrency:
 
 jobs:
   update-card:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Generate music card
         env:
@@ -27,6 +27,23 @@ jobs:
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add musicCard.svg README.md
-          git diff --staged --quiet || (git commit -m "chore: update NetEase music card" && git pull --rebase origin main && git push)
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update NetEase music card"
+          # -X ours keeps upstream README on conflict, so a concurrent manual
+          # README edit is never overwritten; the banner is re-applied next run.
+          for attempt in 1 2 3; do
+            if git pull --rebase -X ours origin main && git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Attempt $attempt failed; retrying in $((attempt * 5))s"
+            sleep $((attempt * 5))
+          done
+          echo "Failed to push after 3 attempts." >&2
+          exit 1
